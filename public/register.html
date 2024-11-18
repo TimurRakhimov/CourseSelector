@@ -1,0 +1,89 @@
+<!--
+    Author: Timur Rakhimov
+    Date: 2024-11-12
+    Description: User registration page for the Course Selection app using AngularJS and Bootstrap for styling.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* General page styling */
+        body {
+            background-color: #e9ecef;
+            font-family: Arial, sans-serif;
+        }
+        /* Container for the registration form */
+        .register-container {
+            max-width: 450px;
+            margin: 80px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        /* Header styling */
+        .register-header {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        /* Form control styling */
+        .form-control {
+            border-radius: 20px;
+        }
+        /* Primary button styling */
+        .btn-primary {
+            border-radius: 20px;
+            width: 100%;
+        }
+        /* Secondary button styling */
+        .btn-secondary {
+            border-radius: 20px;
+            width: 100%;
+            margin-top: 10px;
+        }
+        /* Error message styling */
+        .error-message {
+            color: #dc3545;
+            text-align: center;
+            margin-top: 10px;
+        }
+        /* Success message styling */
+        .success-message {
+            color: #28a745;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <!-- Application script -->
+    <script src="app.js"></script>
+</head>
+<body ng-app="courseApp" ng-controller="RegisterController">
+    <!-- Registration Form Container -->
+    <div class="register-container">
+        <h2 class="register-header">User Registration</h2>
+
+        <!-- Username Input -->
+        <input type="text" ng-model="username" placeholder="Username" class="form-control mb-3" required>
+
+        <!-- Password Input -->
+        <input type="password" ng-model="password" placeholder="Password" class="form-control mb-3" required>
+
+        <!-- Register Button -->
+        <button class="btn btn-primary" ng-click="register()">Register</button>
+
+        <!-- Back to Login Button -->
+        <button class="btn btn-secondary" ng-click="goToLogin()">Back to Login</button>
+
+        <!-- Error and Success Messages -->
+        <p class="error-message" ng-if="!success">{{ message }}</p>
+        <p class="success-message" ng-if="success">{{ message }}</p>
+    </div>
+</body>
+</html>

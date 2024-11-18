@@ -1,0 +1,112 @@
+<!--
+    Author: Timur Rakhimov
+    Date: 2024-11-12
+    Description: HTML page for managing and displaying courses. Users can view, add, and delete courses.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Courses</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* General page styling */
+        body {
+            background-color: #e9ecef;
+        }
+        /* Styling for the navigation bar */
+        .nav-bar {
+            background-color: #007bff;
+            padding: 10px;
+        }
+        /* Links in the navigation bar */
+        .nav-bar a {
+            color: #fff;
+            margin-right: 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        /* Main container for courses */
+        .courses-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        /* Styling for individual course cards */
+        .course-card {
+            background-color: #e2e6ea;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        /* Course title styling */
+        .course-title {
+            color: #007bff;
+            font-weight: bold;
+        }
+        /* Delete button styling */
+        .btn-danger {
+            border-radius: 20px;
+        }
+        /* Logout button styling */
+        .logout-btn {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        /* Hover effect for the logout button */
+        .logout-btn:hover {
+            background-color: #c82333;
+        }
+        /* Form styling for adding new courses */
+        .add-course-form {
+            margin-bottom: 20px;
+        }
+        /* Input field styling */
+        .add-course-input {
+            border-radius: 20px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <!-- Application script -->
+    <script src="app.js"></script>
+</head>
+<body ng-app="courseApp" ng-controller="CoursesController">
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <a href="#" ng-click="loadCourses()">Courses</a>
+        <button class="logout-btn" ng-click="logout()">Logout</button>
+    </div>
+
+    <!-- Add Course Form -->
+    <div class="courses-container">
+        <h2>Add New Course</h2>
+        <div class="add-course-form">
+            <input type="text" ng-model="newCourseId" placeholder="Course ID" class="form-control mb-2 add-course-input">
+            <input type="text" ng-model="newCourseName" placeholder="Course Name" class="form-control mb-2 add-course-input">
+            <button class="btn btn-primary btn-block" ng-click="addCourse()">Add Course</button>
+        </div>
+
+        <!-- Courses List -->
+        <h2>Available Courses</h2>
+        <div ng-if="courses.length === 0" class="no-courses">
+            No courses available.
+        </div>
+        <div class="course-card" ng-repeat="course in courses">
+            <span class="course-title">{{ course.courseId }}: {{ course.courseName }}</span>
+            <button class="btn btn-danger" ng-click="deleteCourse(course.courseId)">Delete</button>
+        </div>
+    </div>
+</body>
+</html>
